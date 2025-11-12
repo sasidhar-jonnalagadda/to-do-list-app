@@ -1,0 +1,8 @@
+body {
+  background-image: url("images/todolist.png");
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  text-align: center;
+  color: #000000;
+}
