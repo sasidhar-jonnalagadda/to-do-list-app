@@ -1,6 +1,6 @@
 const addBtn = document.getElementById("add-btn");
 const taskInput = document.getElementById("task-input");
-const tasks = [];
+const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 addBtn.addEventListener("click", function () {
   const newTask = taskInput.value;
@@ -10,6 +10,7 @@ addBtn.addEventListener("click", function () {
   } else {
     alert("Task added successfully!");
     tasks.push(newTask.trim());
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     taskInput.value = "";
   }
 });
