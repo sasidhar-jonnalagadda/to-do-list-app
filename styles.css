@@ -6,3 +6,9 @@ body {
   text-align: center;
   color: #000000;
 }
+
+#task-input {
+  outline: none;
+  width: 200px;
+  padding: 5px 10px;
+}
