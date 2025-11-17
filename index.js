@@ -24,6 +24,14 @@ addBtn.addEventListener("click", function () {
     btn.textContent = "Done";
 
     btn.addEventListener("click", function () {
+      const taskText = row.cells[0].textContent();
+      const taskIndex = tasks.indexOf(taskText);
+
+      if (taskIndex > -1) {
+        tasks.splice(taskIndex, 1);
+      }
+
+      localStorage.setItem("tasks", JSON.stringify(tasks));
       row.remove();
     });
 
