@@ -44,3 +44,11 @@ addBtn.addEventListener("click", function () {
 
   taskInput.value = "";
 });
+
+function renderInitialTasks() {
+  for (let i = 0; i < tasks.length; i++) {
+    addTaskToTable(tasks[i]);
+  }
+}
+
+renderInitialTasks();
