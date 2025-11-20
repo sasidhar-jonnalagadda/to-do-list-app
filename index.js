@@ -8,7 +8,7 @@ function addTaskToTable(taskText) {
   const taskCell = row.insertCell();
   const actionCell = row.insertCell();
 
-  taskCell.textContent = newTask;
+  taskCell.textContent = taskText;
 
   const btn = document.createElement("button");
   btn.textContent = "Done";
