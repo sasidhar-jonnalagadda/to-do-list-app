@@ -14,7 +14,7 @@ function addTaskToTable(taskText) {
   btn.textContent = "Done";
 
   btn.addEventListener("click", function () {
-    const taskText = row.cells[0].textContent();
+    const taskText = row.cells[0].textContent;
     const taskIndex = tasks.indexOf(taskText);
 
     if (taskIndex > -1) {
