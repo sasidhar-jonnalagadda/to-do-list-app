@@ -36,7 +36,6 @@ addBtn.addEventListener("click", function () {
     return;
   }
 
-  alert("Task added successfully!");
   tasks.push(newTask);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
