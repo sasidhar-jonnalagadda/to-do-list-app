@@ -3,19 +3,18 @@ const taskInput = document.getElementById("task-input");
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const table = document.getElementById("taskTable").querySelector("tbody");
 
-function addTaskToTable(taskText) {
+function addTaskToTable(taskObj) {
   const row = table.insertRow();
   const taskCell = row.insertCell();
   const actionCell = row.insertCell();
 
-  taskCell.textContent = taskText;
+  taskCell.textContent = taskObj.text;
 
   const btn = document.createElement("button");
   btn.textContent = "Done";
 
   btn.addEventListener("click", function () {
-    const taskText = row.cells[0].textContent;
-    const taskIndex = tasks.indexOf(taskText);
+    const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
 
     if (taskIndex > -1) {
       tasks.splice(taskIndex, 1);
@@ -29,17 +28,22 @@ function addTaskToTable(taskText) {
 }
 
 addBtn.addEventListener("click", function () {
-  const newTask = taskInput.value.trim();
+  const newTaskText = taskInput.value.trim();
 
-  if (newTask.length <= 3) {
+  if (newTaskText.length <= 3) {
     alert("Length of the task must be at least 3 characters!");
     return;
   }
 
-  tasks.push(newTask);
+  const taskObj = {
+    id: Date.now(),
+    text: newTaskText,
+  };
+
+  tasks.push(taskObj);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
-  addTaskToTable(newTask);
+  addTaskToTable(taskObj);
 
   taskInput.value = "";
 });
