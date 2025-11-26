@@ -48,6 +48,12 @@ addBtn.addEventListener("click", function () {
   taskInput.value = "";
 });
 
+taskInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    addBtn.click();
+  }
+});
+
 function renderInitialTasks() {
   for (let i = 0; i < tasks.length; i++) {
     addTaskToTable(tasks[i]);
