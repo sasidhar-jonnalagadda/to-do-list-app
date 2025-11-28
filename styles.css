@@ -43,3 +43,13 @@ th,
 td {
   padding: 10px;
 }
+
+.hidden {
+  display: none;
+}
+
+#empty-msg {
+  color: #555;
+  font-style: italic;
+  margin-top: 20px;
+}
