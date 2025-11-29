@@ -2,6 +2,8 @@ const addBtn = document.getElementById("add-btn");
 const taskInput = document.getElementById("task-input");
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const table = document.getElementById("taskTable").querySelector("tbody");
+const emptyMsg = document.getElementById("empty-msg");
+const taskTable = document.getElementById("taskTable");
 
 function addTaskToTable(taskObj) {
   const row = table.insertRow();
@@ -22,9 +24,21 @@ function addTaskToTable(taskObj) {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
     row.remove();
+
+    toggleEmptyState();
   });
 
   actionCell.appendChild(btn);
+}
+
+function toggleEmptyState() {
+  if (tasks.length === 0) {
+    emptyMsg.classList.remove("hidden");
+    taskTable.classList.add("hidden");
+  } else {
+    emptyMsg.classList.add("hidden");
+    taskTable.classList.remove("hidden");
+  }
 }
 
 addBtn.addEventListener("click", function () {
@@ -45,6 +59,8 @@ addBtn.addEventListener("click", function () {
 
   addTaskToTable(taskObj);
 
+  toggleEmptyState();
+
   taskInput.value = "";
 });
 
@@ -58,6 +74,8 @@ function renderInitialTasks() {
   for (let i = 0; i < tasks.length; i++) {
     addTaskToTable(tasks[i]);
   }
+
+  toggleEmptyState();
 }
 
 renderInitialTasks();
