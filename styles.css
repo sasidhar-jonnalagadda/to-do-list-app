@@ -53,3 +53,17 @@ td {
   font-style: italic;
   margin-top: 20px;
 }
+
+table button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+table button:hover {
+  background-color: #cc0000;
+}
