@@ -78,4 +78,23 @@ function renderInitialTasks() {
   toggleEmptyState();
 }
 
+const clearBtn = document.getElementById("clear-btn");
+
+clearBtn.addEventListener("click", function () {
+  if (tasks.length === 0) {
+    alert("No tasks to clear!");
+    return;
+  }
+
+  if (confirm("Are you sure you want to delete ALL tasks?")) {
+    tasks.length = 0;
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    table.innerHTML = "";
+
+    toggleEmptyState();
+  }
+});
+
 renderInitialTasks();
