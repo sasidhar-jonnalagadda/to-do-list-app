@@ -73,3 +73,14 @@ td {
   padding: 10px;
   word-wrap: break-word;
 }
+
+.completed-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+  cursor: pointer;
+}
