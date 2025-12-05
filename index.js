@@ -52,6 +52,7 @@ addBtn.addEventListener("click", function () {
   const taskObj = {
     id: Date.now(),
     text: newTaskText,
+    completed: false,
   };
 
   tasks.push(taskObj);
