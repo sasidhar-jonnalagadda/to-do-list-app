@@ -6,29 +6,60 @@ const emptyMsg = document.getElementById("empty-msg");
 const taskTable = document.getElementById("taskTable");
 
 function addTaskToTable(taskObj) {
-  const row = table.insertRow();
-  const taskCell = row.insertCell();
-  const actionCell = row.insertCell();
+  function addTaskToTable(taskObj) {
+    const row = table.insertRow();
+    const taskCell = row.insertCell();
+    const actionCell = row.insertCell();
 
-  taskCell.textContent = taskObj.text;
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = taskObj.completed;
 
-  const btn = document.createElement("button");
-  btn.textContent = "Done";
+    checkbox.addEventListener("change", function () {
+      if (checkbox.checked) {
+        span.classList.add("completed-text");
+        taskObj.completed = true;
+      } else {
+        span.classList.remove("completed-text");
+        taskObj.completed = false;
+      }
 
-  btn.addEventListener("click", function () {
-    const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
+      const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
+      if (taskIndex > -1) {
+        tasks[taskIndex].completed = taskObj.completed;
+      }
 
-    if (taskIndex > -1) {
-      tasks.splice(taskIndex, 1);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    });
+
+    const span = document.createElement("span");
+    span.textContent = taskObj.text;
+
+    if (taskObj.completed) {
+      span.classList.add("completed-text");
     }
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    row.remove();
+    taskCell.appendChild(checkbox);
+    taskCell.appendChild(span);
 
-    toggleEmptyState();
-  });
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
 
-  actionCell.appendChild(btn);
+    deleteBtn.addEventListener("click", function () {
+      const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
+
+      if (taskIndex > -1) {
+        tasks.splice(taskIndex, 1);
+      }
+
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      row.remove();
+
+      toggleEmptyState();
+    });
+
+    actionCell.appendChild(deleteBtn);
+  }
 }
 
 function toggleEmptyState() {
