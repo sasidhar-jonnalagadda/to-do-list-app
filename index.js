@@ -6,60 +6,58 @@ const emptyMsg = document.getElementById("empty-msg");
 const taskTable = document.getElementById("taskTable");
 
 function addTaskToTable(taskObj) {
-  function addTaskToTable(taskObj) {
-    const row = table.insertRow();
-    const taskCell = row.insertCell();
-    const actionCell = row.insertCell();
+  const row = table.insertRow();
+  const taskCell = row.insertCell();
+  const actionCell = row.insertCell();
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = taskObj.completed;
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = taskObj.completed;
 
-    checkbox.addEventListener("change", function () {
-      if (checkbox.checked) {
-        span.classList.add("completed-text");
-        taskObj.completed = true;
-      } else {
-        span.classList.remove("completed-text");
-        taskObj.completed = false;
-      }
-
-      const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
-      if (taskIndex > -1) {
-        tasks[taskIndex].completed = taskObj.completed;
-      }
-
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    });
-
-    const span = document.createElement("span");
-    span.textContent = taskObj.text;
-
-    if (taskObj.completed) {
+  checkbox.addEventListener("change", function () {
+    if (checkbox.checked) {
       span.classList.add("completed-text");
+      taskObj.completed = true;
+    } else {
+      span.classList.remove("completed-text");
+      taskObj.completed = false;
     }
 
-    taskCell.appendChild(checkbox);
-    taskCell.appendChild(span);
+    const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
+    if (taskIndex > -1) {
+      tasks[taskIndex].completed = taskObj.completed;
+    }
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  });
 
-    deleteBtn.addEventListener("click", function () {
-      const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
+  const span = document.createElement("span");
+  span.textContent = taskObj.text;
 
-      if (taskIndex > -1) {
-        tasks.splice(taskIndex, 1);
-      }
-
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-      row.remove();
-
-      toggleEmptyState();
-    });
-
-    actionCell.appendChild(deleteBtn);
+  if (taskObj.completed) {
+    span.classList.add("completed-text");
   }
+
+  taskCell.appendChild(checkbox);
+  taskCell.appendChild(span);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+
+  deleteBtn.addEventListener("click", function () {
+    const taskIndex = tasks.findIndex((t) => t.id === taskObj.id);
+
+    if (taskIndex > -1) {
+      tasks.splice(taskIndex, 1);
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    row.remove();
+
+    toggleEmptyState();
+  });
+
+  actionCell.appendChild(deleteBtn);
 }
 
 function toggleEmptyState() {
