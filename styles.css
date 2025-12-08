@@ -84,3 +84,16 @@ input[type="checkbox"] {
   margin-right: 10px;
   cursor: pointer;
 }
+
+.clear-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.clear-btn:hover {
+  background-color: #cc0000;
+}
