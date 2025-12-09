@@ -97,3 +97,18 @@ input[type="checkbox"] {
 .clear-btn:hover {
   background-color: #cc0000;
 }
+
+#add-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#add-btn:hover {
+  background-color: #218838;
+}
